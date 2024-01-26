@@ -11,14 +11,19 @@ interface SmartDevice {
 
 // Abstract Class Gadget
 abstract class Gadget implements SmartDevice {
-    @Override
+     private String name;
+       public Gadget(String name){
+           this.name = name;
+       }
+       @Override
+
     public void turnOn() {
-        System.out.println("Device is turned on.");
+        System.out.println(name + "is turned on.");
     }
 
     @Override
     public void turnOff() {
-        System.out.println("Device is turned off.");
+        System.out.println(name + "is turned off.");
     }
 
     @Override
@@ -32,7 +37,10 @@ abstract class Gadget implements SmartDevice {
 }
 
 // SmartPhone Class
-class SmartPhone extends Gadget {
+ class SmartPhone extends Gadget {
+   public SmartPhone(String name){
+       super (name);
+    }
     @Override
     void receiveNotification(String message) {
         System.out.println("SmartPhone Notification: " + message);
@@ -53,12 +61,15 @@ class SmartPhone extends Gadget {
 
     @Override
     public void connectToDevice(SmartDevice anotherDevice) {
-        System.out.println("SmartPhone is connected to another device.");
+        System.out.println(getName() + " is connected to another device.");
     }
 }
 
 // SmartWatch Class
 class SmartWatch extends Gadget {
+    public SmartWatch(String name){
+        super (name);
+    }
     @Override
     void receiveNotification(String message) {
         System.out.println("SmartWatch Notification: " + message);
@@ -79,12 +90,15 @@ class SmartWatch extends Gadget {
 
     @Override
     public void connectToDevice(SmartDevice anotherDevice) {
-        System.out.println("SmartWatch is connected to another device.");
+        System.out.println(getname() + "is connected to another device.");
     }
 }
 
 // SmartTV Class
 class SmartTV extends Gadget {
+    public SmartTV(String name){
+        super(name);
+    }
     @Override
     void receiveNotification(String message) {
         System.out.println("SmartTV Notification: " + message);
@@ -111,19 +125,19 @@ class SmartTV extends Gadget {
 
 public class Main {
     public static void main(String[] args) {
-        SmartPhone smartphone = new SmartPhone();
+        SmartPhone smartphone = new SmartPhone("Cench smartphone" );
         smartphone.turnOn();
         smartphone.connectToInternet();
         smartphone.makeCall("+77761081376");
         smartphone.sendSMS("Whats up!");
 
-        SmartWatch smartWatch = new SmartWatch();
+        SmartWatch smartWatch = new SmartWatch("cench time is ");
         smartWatch.turnOn();
         smartWatch.connectToInternet();
         smartWatch.trackHeartRate();
         smartWatch.showTime();
 
-        SmartTV smartTV = new SmartTV();
+        SmartTV smartTV = new SmartTV("Cench television");
         smartTV.turnOn();
         smartTV.connectToInternet();
         smartTV.streamVideo("https://www.youtube.com/watch?v=tp29U3dZdj0");
@@ -132,5 +146,8 @@ public class Main {
         // Inter-Device Communication
         smartphone.connectToDevice(smartTV);
         smartWatch.connectToDevice(smartphone);
+    }
+    private static String getName(){
+        return "Mukhammad's gadget";
     }
 }
